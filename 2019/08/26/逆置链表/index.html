@@ -5,10 +5,14 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="逆置链表, cyyyys">
-    <meta name="description" content="
-迭代法
-链表的逆置是常见的也是比较基础的算法考核题目。假设存在链表1 → 2 → 3 → Ø，我们想要把它改成 Ø ← 1 ← 2 ← 3。
-逆置链表时，我们需要将当前节点的 next指针改为指向前一个元素。首先curr指向第一个元素，我">
+    <meta name="description" content="逆置链表public class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+    }
+####迭代法
+链表的逆置是常">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -420,8 +424,13 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ol>
-<li><p>迭代法</p>
+                <h3 id="逆置链表"><a href="#逆置链表" class="headerlink" title="逆置链表"></a>逆置链表</h3><pre><code class="java">public class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+    }</code></pre>
+<p>####迭代法</p>
 <p>链表的逆置是常见的也是比较基础的算法考核题目。假设存在链表<code>1 → 2 → 3 → Ø</code>，我们想要把它改成 <code>Ø ← 1 ← 2 ← 3</code>。</p>
 <p>逆置链表时，我们需要将当前节点的 <code>next</code>指针改为指向前一个元素。首先<code>curr</code>指向第一个元素，我们需要一个<code>prev</code>来保存前一个元素，将<code>curr</code>后移一个元素，将<code>curr.next</code>赋值给<code>prev</code>。不断循环实现链表逆置，直到<code>curr</code>为空结束循环。</p>
 <pre><code class="java">public class Solution {
@@ -437,10 +446,7 @@
         }
         return prev;
     }    </code></pre>
-</li>
-</ol>
-<ol start="2">
-<li><p>递归法</p>
+<p>####递归法</p>
 <p>这道题递归的思想很有趣，关键在于反向工作。假设列表的其余部分已经被反转，那么如何反转前面部分是我们需要解决的问题。假设列表为：</p>
 <p>n1~ → … → nk−1~ → nk~ → nk+1~ → … → nm~ → ∅</p>
 <p>若从节点n<del>k+1</del>到n<del>m</del>已经被反转，而我们正处于n<del>k</del>。</p>
@@ -455,8 +461,6 @@
         return p;
     }
 </code></pre>
-</li>
-</ol>
 
             </div>
             <hr/>
@@ -674,10 +678,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-迭代法
-链表的逆置是常见的也是比较基础的算法考核题目。假设存在链表1 → 2 → 3 → Ø，我们想要把它改成 Ø ← 1 ← 2 ← 3。
-逆置链表时，我们需要将当前节点的 next指针改为指向前一个元素。首先curr指向第一个元素，我
+                            逆置链表public class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+    }
+####迭代法
+链表的逆置是常
                         
                     </div>
                     <div class="publish-info">
