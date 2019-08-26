@@ -4,9 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="cs的小知识, cyyyys">
+    <meta name="keywords" content="逆置链表, cyyyys">
     <meta name="description" content="
-CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是“次数/秒”的意思。而在网络传输方面，由于网络使用的是位(bit)为单位，因此网络尝试用的单位为Mbit/s是Mbits per second，即每秒多少Mbit。例如“">
+迭代法
+链表的逆置是常见的也是比较基础的算法考核题目。假设存在链表1 → 2 → 3 → Ø，我们想要把它改成 Ø ← 1 ← 2 ← 3。
+逆置链表时，我们需要将当前节点的 next指针改为指向前一个元素。首先curr指向第一个元素，我">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +16,7 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>cs的小知识 | cyyyys</title>
+    <title>逆置链表 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +263,13 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        cs的小知识
+                        逆置链表
                     </div>
                 </div>
             </div>
@@ -378,8 +380,8 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/cs/" target="_blank">
-                                <span class="chip bg-color">cs</span>
+                            <a href="/tags/算法/" target="_blank">
+                                <span class="chip bg-color">算法</span>
                             </a>
                         
                     </div>
@@ -390,8 +392,8 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/cs/" class="post-category" target="_blank">
-                                cs
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                算法
                             </a>
                         
                     </div>
@@ -402,7 +404,7 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-15
+                    2019-08-26
                 </div>
 
                 
@@ -419,7 +421,41 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <ol>
-<li>CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是“次数/秒”的意思。而在网络传输方面，由于网络使用的是位(bit)为单位，因此网络尝试用的单位为Mbit/s是Mbits per second，即每秒多少Mbit。例如“20M/5M”光纤传输速度，如果转成数据容量的字节时，其实理论最大传输值为：每秒2.5MB/每秒625K的下载/上传速度。</li>
+<li><p>迭代法</p>
+<p>链表的逆置是常见的也是比较基础的算法考核题目。假设存在链表<code>1 → 2 → 3 → Ø</code>，我们想要把它改成 <code>Ø ← 1 ← 2 ← 3</code>。</p>
+<p>逆置链表时，我们需要将当前节点的 <code>next</code>指针改为指向前一个元素。首先<code>curr</code>指向第一个元素，我们需要一个<code>prev</code>来保存前一个元素，将<code>curr</code>后移一个元素，将<code>curr.next</code>赋值给<code>prev</code>。不断循环实现链表逆置，直到<code>curr</code>为空结束循环。</p>
+<pre><code class="java">public class Solution {
+    public static ListNode reverseList(ListNode head) {
+        ListNode nextTemp = null;
+        ListNode curr = head;
+        ListNode prev = null;
+        while (head != null) {
+            nextTemp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextTemp;
+        }
+        return prev;
+    }    </code></pre>
+</li>
+</ol>
+<ol start="2">
+<li><p>递归法</p>
+<p>这道题递归的思想很有趣，关键在于反向工作。假设列表的其余部分已经被反转，那么如何反转前面部分是我们需要解决的问题。假设列表为：</p>
+<p>n<del>1</del> → … → n<del>k−1</del> → n<del>k</del> → n<del>k+1 → … → n</del>m~ → ∅</p>
+<p>若从节点n<del>k+1</del>到n<del>m</del>已经被反转，而我们正处于n<del>k</del>。</p>
+<p>n<del>1</del> → … → n<del>k−1</del> → n<del>k</del> → n<del>k+1 ← … ← n</del>m~ </p>
+<p>我们希望n<del>k+1</del>的下一个节点指向n<del>k</del>。所以，n<del>k</del>.next.next=n<del>k</del>。需要注意的是n<del>1</del>的下一个必须指向∅。</p>
+<pre><code class="java">public class Solution {
+    public static ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode p = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return p;
+    }
+</code></pre>
+</li>
 </ol>
 
             </div>
@@ -579,9 +615,9 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《cs的小知识》
+                    《逆置链表》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/15/cs的小知识/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/26/逆置链表/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -621,9 +657,10 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/08/26/逆置链表/">
                     <div class="card-image">
@@ -644,9 +681,9 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -659,6 +696,7 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -677,32 +715,32 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/14/docker简介/">
+                <a href="/2019/08/15/cs的小知识/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="docker简介">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="cs的小知识">
                         
-                        <span class="card-title">docker简介</span>
+                        <span class="card-title">cs的小知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            容器​        容器模型其实跟虚拟器模型相似，其主要区别在于，容器的运行不会独占操作系统。实际上，运行在相同宿主机上的容器是共享一个操作系统的，从而节省了大量的系统资源，例如CPU、RAM以及存储。
-​        同时容器还具有启
+                            
+CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是“次数/秒”的意思。而在网络传输方面，由于网络使用的是位(bit)为单位，因此网络尝试用的单位为Mbit/s是Mbits per second，即每秒多少Mbit。例如“
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/软件工具/" class="post-category" target="_blank">
-                                    软件工具
+                            <a href="/categories/cs/" class="post-category" target="_blank">
+                                    cs
                                 </a>
                             
                             
@@ -712,8 +750,8 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker/" target="_blank">
-                        <span class="chip bg-color">docker</span>
+                    <a href="/tags/cs/" target="_blank">
+                        <span class="chip bg-color">cs</span>
                     </a>
                     
                 </div>
