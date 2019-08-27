@@ -4,15 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="逆置链表, cyyyys">
-    <meta name="description" content="逆置链表public class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-        val = x;
-    }
-####迭代法
-链表的逆置是常">
+    <meta name="keywords" content="利用快慢指针移除元素, cyyyys">
+    <meta name="description" content="题目要求给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>逆置链表 | cyyyys</title>
+    <title>利用快慢指针移除元素 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -267,13 +260,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        逆置链表
+                        利用快慢指针移除元素
                     </div>
                 </div>
             </div>
@@ -408,7 +401,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-26
+                    2019-08-27
                 </div>
 
                 
@@ -424,43 +417,21 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="逆置链表"><a href="#逆置链表" class="headerlink" title="逆置链表"></a>逆置链表</h3><pre><code class="java">public class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-        val = x;
-    }</code></pre>
-<p>####迭代法</p>
-<p>链表的逆置是常见的也是比较基础的算法考核题目。假设存在链表<code>1 → 2 → 3 → Ø</code>，我们想要把它改成 <code>Ø ← 1 ← 2 ← 3</code>。</p>
-<p>逆置链表时，我们需要将当前节点的 <code>next</code>指针改为指向前一个元素。首先<code>curr</code>指向第一个元素，我们需要一个<code>prev</code>来保存前一个元素，将<code>curr</code>后移一个元素，将<code>curr.next</code>赋值给<code>prev</code>。不断循环实现链表逆置，直到<code>curr</code>为空结束循环。</p>
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<hr>
+<h4 id="双指针法"><a href="#双指针法" class="headerlink" title="双指针法"></a>双指针法</h4><p>我们保留两个指针 i和 j，其中 i是慢指针，j是快指针。</p>
+<p>在每次循环中，我们用nums[i]将nums[j]不等于val的值存储下来，i++。</p>
 <pre><code class="java">public class Solution {
-    public static ListNode reverseList(ListNode head) {
-        ListNode nextTemp = null;
-        ListNode curr = head;
-        ListNode prev = null;
-        while (head != null) {
-            nextTemp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = nextTemp;
+    public static int removeElement(int[] nums, int val) {
+        int i = 0;
+        for (int j = 0; j &lt; nums.length; j++) {
+            if (nums[j] != val) {
+                nums[i] = nums[j];
+                i++;
+            }
         }
-        return prev;
-    }    </code></pre>
-<p>####递归法</p>
-<p>这道题递归的思想很有趣，关键在于反向工作。假设列表的其余部分已经被反转，那么如何反转前面部分是我们需要解决的问题。假设列表为：</p>
-<p>n1~ → … → nk−1~ → nk~ → nk+1~ → … → nm → ∅</p>
-<p>若从节点n<del>k+1</del>到n<del>m</del>已经被反转，而我们正处于n<del>k</del>。</p>
-<p>n1~ → … → nk−1~ → nk~ →  nk+1~ ← … ← nm</p>
-<p>我们希望nk+1的下一个节点指向nk。所以，nk.next.next=nk。需要注意的是n1~的下一个必须指向∅。</p>
-<pre><code class="java">public class Solution {
-    public static ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode p = reverseList(head.next);
-        head.next.next = head;
-        head.next = null;
-        return p;
-    }
-</code></pre>
+        return i;
+    }</code></pre>
 
             </div>
             <hr/>
@@ -619,9 +590,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《逆置链表》
+                    《利用快慢指针移除元素》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/26/逆置链表/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/利用快慢指针移除元素/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -661,9 +632,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/08/27/利用快慢指针移除元素/">
                     <div class="card-image">
@@ -681,9 +653,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -696,6 +668,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -714,32 +687,38 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/15/cs的小知识/">
+                <a href="/2019/08/26/逆置链表/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="cs的小知识">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="逆置链表">
                         
-                        <span class="card-title">cs的小知识</span>
+                        <span class="card-title">逆置链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是“次数/秒”的意思。而在网络传输方面，由于网络使用的是位(bit)为单位，因此网络尝试用的单位为Mbit/s是Mbits per second，即每秒多少Mbit。例如“
+                            逆置链表public class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+    }
+####迭代法
+链表的逆置是常
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-15
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/cs/" class="post-category" target="_blank">
-                                    cs
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
                                 </a>
                             
                             
@@ -749,8 +728,8 @@ CPU的命令周期常使用MHz或者是GHz之类的单位，这个Hz其实就是
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/cs/" target="_blank">
-                        <span class="chip bg-color">cs</span>
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
