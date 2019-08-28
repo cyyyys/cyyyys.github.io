@@ -4,8 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="利用快慢指针移除元素, cyyyys">
-    <meta name="description" content="题目要求给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑">
+    <meta name="keywords" content="求解二叉树的最大深度和判断是否是平衡二叉树, cyyyys">
+    <meta name="description" content="求解二叉树的最大深度题目要求给定一个二叉树，找出其最大深度。
+二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+说明: 叶子节点是指没有子节点的节点。
+示例：给定二叉树 [3,9,20,null,null,15,7]，
+  3
+ /">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>利用快慢指针移除元素 | cyyyys</title>
+    <title>求解二叉树的最大深度和判断是否是平衡二叉树 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +265,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        利用快慢指针移除元素
+                        求解二叉树的最大深度和判断是否是平衡二叉树
                     </div>
                 </div>
             </div>
@@ -401,7 +406,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-27
+                    2019-08-28
                 </div>
 
                 
@@ -417,21 +422,78 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
-<hr>
-<h4 id="双指针法"><a href="#双指针法" class="headerlink" title="双指针法"></a>双指针法</h4><p>我们保留两个指针 i和 j，其中 i是慢指针，j是快指针。</p>
-<p>在每次循环中，我们用nums[i]将nums[j]不等于val的值存储下来，i++。</p>
+                <h3 id="求解二叉树的最大深度"><a href="#求解二叉树的最大深度" class="headerlink" title="求解二叉树的最大深度"></a>求解二叉树的最大深度</h3><h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个二叉树，找出其最大深度。</p>
+<p>二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+<p><strong>示例：</strong><br>给定二叉树 [3,9,20,null,null,15,7]，</p>
+<pre><code>  3
+ / \
+9  20
+  /  \
+ 15   7</code></pre><p>返回它的最大深度 3 。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/balanced-binary-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/balanced-binary-tree</a></p>
+<p>定义一个二叉树的结构如下所示</p>
+<pre><code class="java">public class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int val) {
+        this.val = val;
+    }
+}</code></pre>
+<p>####解决方案</p>
+<p>这里我们直接使用递归的方法，深度优先遍历即可解决问题。</p>
 <pre><code class="java">public class Solution {
-    public static int removeElement(int[] nums, int val) {
-        int i = 0;
-        for (int j = 0; j &lt; nums.length; j++) {
-            if (nums[j] != val) {
-                nums[i] = nums[j];
-                i++;
-            }
-        }
-        return i;
-    }</code></pre>
+    public int maxDepth(TreeNode root) {
+        return height(root);
+    }
+    public int height(TreeNode root) {
+        if (root == null) return 0;
+        int left = height(root.left) + 1;
+        int right = height(root.right) + 1;
+        return Math.max(left, right);
+    }
+}
+</code></pre>
+<p>####复杂度分析</p>
+<p>时间复杂度：我们每个结点只访问一次，因此时间复杂度为 O(N)O(N)，<br>其中 NN 是结点的数量。<br>空间复杂度：在最糟糕的情况下，树是完全不平衡的，例如每个结点只剩下左子结点，递归将会被调用 N 次（树的高度），因此保持调用栈的存储将是 O(N)。但在最好的情况下（树是完全平衡的），树的高度将是 log(N)。因此，在这种情况下的空间复杂度将是O(log(N))。</p>
+<hr>
+<h3 id="判断二叉树是否是平衡二叉树"><a href="#判断二叉树是否是平衡二叉树" class="headerlink" title="判断二叉树是否是平衡二叉树"></a>判断二叉树是否是平衡二叉树</h3><h4 id="题目要求-1"><a href="#题目要求-1" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：</p>
+<p>一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。</p>
+<p><strong>示例 1:</strong></p>
+<p>给定二叉树 [3,9,20,null,null,15,7]</p>
+<pre><code>  3
+ / \
+9  20
+   /  \
+  15   7</code></pre><p>返回 true 。</p>
+<p><strong>示例 2:</strong></p>
+<p>给定二叉树 [1,2,2,3,3,null,null,4,4]</p>
+<pre><code>   1
+  / \
+ 2   2
+/ \
+3  3
+  / \
+ 4   4</code></pre><p>返回 false 。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/balanced-binary-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/balanced-binary-tree</a></p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>这道题目是在上一道题目上的一个延伸问题，并不难解决。</p>
+<pre><code class="java">public class Solution {
+    boolean res = true;
+    public boolean isBalanced(TreeNode root) {
+        helper(root);
+        return res;
+    }
+    private int helper(TreeNode root) {
+        if (root == null) return 0;
+        int left = helper(root.left) + 1;
+        int right = helper(root.right) + 1;
+        if (Math.abs(right - left) &gt; 1) res = false;
+        return Math.max(left, right);
+    }
+}</code></pre>
+<p>只需要多判断一个left与right的绝对值的差值是否小于1，即可解决问题。</p>
 
             </div>
             <hr/>
@@ -590,9 +652,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《利用快慢指针移除元素》
+                    《求解二叉树的最大深度和判断是否是平衡二叉树》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/利用快慢指针移除元素/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/28/求解二叉树的最大深度和判断是否是平衡二叉树/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -632,9 +694,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/08/28/求解二叉树的最大深度和判断是否是平衡二叉树/">
                     <div class="card-image">
@@ -657,9 +720,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -672,6 +735,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -690,31 +754,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/26/逆置链表/">
+                <a href="/2019/08/27/利用快慢指针移除元素/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="逆置链表">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="利用快慢指针移除元素">
                         
-                        <span class="card-title">逆置链表</span>
+                        <span class="card-title">利用快慢指针移除元素</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            逆置链表public class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-        val = x;
-    }
-####迭代法
-链表的逆置是常
+                            题目要求给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-26
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
                             </span>
                         <span class="publish-author">
                             
