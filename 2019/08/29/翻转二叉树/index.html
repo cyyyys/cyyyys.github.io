@@ -4,13 +4,20 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="求解二叉树的最大深度和判断是否是平衡二叉树, cyyyys">
-    <meta name="description" content="求解二叉树的最大深度题目要求给定一个二叉树，找出其最大深度。
-二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
-说明: 叶子节点是指没有子节点的节点。
-示例：给定二叉树 [3,9,20,null,null,15,7]，
-  3
- /">
+    <meta name="keywords" content="利用快慢指针移除元素, cyyyys">
+    <meta name="description" content="题目要求翻转一棵二叉树。
+示例：
+输入：
+    4
+  /   \
+  2     7
+ / \   / \
+1   3 6   9输出：
+   4
+ /   \
+ 7     2
+/ \   / \
+9   6 3   1来源：力扣（L">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +25,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>求解二叉树的最大深度和判断是否是平衡二叉树 | cyyyys</title>
+    <title>利用快慢指针移除元素 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -265,13 +272,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        求解二叉树的最大深度和判断是否是平衡二叉树
+                        利用快慢指针移除元素
                     </div>
                 </div>
             </div>
@@ -406,7 +413,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-28
+                    2019-08-29
                 </div>
 
                 
@@ -422,17 +429,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="求解二叉树的最大深度"><a href="#求解二叉树的最大深度" class="headerlink" title="求解二叉树的最大深度"></a>求解二叉树的最大深度</h3><h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个二叉树，找出其最大深度。</p>
-<p>二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
-<p>说明: 叶子节点是指没有子节点的节点。</p>
-<p><strong>示例：</strong><br>给定二叉树 [3,9,20,null,null,15,7]，</p>
-<pre><code>  3
- / \
-9  20
-  /  \
- 15   7</code></pre><p>返回它的最大深度 3 。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/balanced-binary-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/balanced-binary-tree</a></p>
-<p>定义一个二叉树的结构如下所示</p>
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>翻转一棵二叉树。</p>
+<p>示例：</p>
+<p>输入：</p>
+<pre><code>    4
+  /   \
+  2     7
+ / \   / \
+1   3 6   9</code></pre><p>输出：</p>
+<pre><code>   4
+ /   \
+ 7     2
+/ \   / \
+9   6 3   1</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/invert-binary-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/invert-binary-tree</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>这道题目有一个十分有趣的小故事。mac上家喻户晓的软件homebrew的开发者去参加Google的面试，却不能写出翻转二叉树这道题目，被谷歌拒绝了。原话如下：</p>
+<p>谷歌：我们90％的工程师使用您编写的软件(Homebrew)，但是您却无法在面试时在白板上写出翻转二叉树这道题，这太糟糕了。</p>
+<h4 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h4><p>树的结构如下：</p>
 <pre><code class="java">public class TreeNode {
     int val;
     TreeNode left;
@@ -441,59 +453,19 @@
         this.val = val;
     }
 }</code></pre>
-<p>####解决方案</p>
-<p>这里我们直接使用递归的方法，深度优先遍历即可解决问题。</p>
+<p>翻转一棵空树的结果还是一棵空树（作为迭代出口），利用迭代让其root.left和root.right互换即可完成这道题目。</p>
 <pre><code class="java">public class Solution {
-    public int maxDepth(TreeNode root) {
-        return height(root);
-    }
-    public int height(TreeNode root) {
-        if (root == null) return 0;
-        int left = height(root.left) + 1;
-        int right = height(root.right) + 1;
-        return Math.max(left, right);
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
     }
 }
 </code></pre>
-<p>####复杂度分析</p>
-<p>时间复杂度：我们每个结点只访问一次，因此时间复杂度为 O(N)O(N)，<br>其中 NN 是结点的数量。<br>空间复杂度：在最糟糕的情况下，树是完全不平衡的，例如每个结点只剩下左子结点，递归将会被调用 N 次（树的高度），因此保持调用栈的存储将是 O(N)。但在最好的情况下（树是完全平衡的），树的高度将是 log(N)。因此，在这种情况下的空间复杂度将是O(log(N))。</p>
-<hr>
-<h3 id="判断二叉树是否是平衡二叉树"><a href="#判断二叉树是否是平衡二叉树" class="headerlink" title="判断二叉树是否是平衡二叉树"></a>判断二叉树是否是平衡二叉树</h3><h4 id="题目要求-1"><a href="#题目要求-1" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
-<p>本题中，一棵高度平衡二叉树定义为：</p>
-<p>一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。</p>
-<p><strong>示例 1:</strong></p>
-<p>给定二叉树 [3,9,20,null,null,15,7]</p>
-<pre><code>  3
- / \
-9  20
-   /  \
-  15   7</code></pre><p>返回 true 。</p>
-<p><strong>示例 2:</strong></p>
-<p>给定二叉树 [1,2,2,3,3,null,null,4,4]</p>
-<pre><code>   1
-  / \
- 2   2
-/ \
-3  3
-  / \
- 4   4</code></pre><p>返回 false 。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/balanced-binary-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/balanced-binary-tree</a></p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>这道题目是在上一道题目上的一个延伸问题，并不难解决。</p>
-<pre><code class="java">public class Solution {
-    boolean res = true;
-    public boolean isBalanced(TreeNode root) {
-        helper(root);
-        return res;
-    }
-    private int helper(TreeNode root) {
-        if (root == null) return 0;
-        int left = helper(root.left) + 1;
-        int right = helper(root.right) + 1;
-        if (Math.abs(right - left) &gt; 1) res = false;
-        return Math.max(left, right);
-    }
-}</code></pre>
-<p>只需要多判断一个left与right的绝对值的差值是否小于1，即可解决问题。</p>
+<p>这道题目并没有难度，只要做出这道题你就能超过世界大牛，问鼎代码之巅。</p>
 
             </div>
             <hr/>
@@ -652,9 +624,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《求解二叉树的最大深度和判断是否是平衡二叉树》
+                    《利用快慢指针移除元素》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/28/求解二叉树的最大深度和判断是否是平衡二叉树/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/29/翻转二叉树/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -694,9 +666,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/08/29/翻转二叉树/">
                     <div class="card-image">
@@ -726,9 +699,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -741,6 +714,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -759,24 +733,29 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/27/利用快慢指针移除元素/">
+                <a href="/2019/08/28/求解二叉树的最大深度和判断是否是平衡二叉树/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="利用快慢指针移除元素">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="求解二叉树的最大深度和判断是否是平衡二叉树">
                         
-                        <span class="card-title">利用快慢指针移除元素</span>
+                        <span class="card-title">求解二叉树的最大深度和判断是否是平衡二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目要求给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。元素的顺序可以改变。你不需要考虑
+                            求解二叉树的最大深度题目要求给定一个二叉树，找出其最大深度。
+二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+说明: 叶子节点是指没有子节点的节点。
+示例：给定二叉树 [3,9,20,null,null,15,7]，
+  3
+ /
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-28
                             </span>
                         <span class="publish-author">
                             
