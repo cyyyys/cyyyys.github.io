@@ -428,7 +428,9 @@
 4   5
    / \
   1   2</code></pre><p>给定的树 t：</p>
-<p>   4<br>  / <br> 1   2<br>返回 true，因为 t 与 s 的一个子树拥有相同的结构和节点值。</p>
+<pre><code>   4 
+  / \
+ 1   2</code></pre><p>返回 true，因为 t 与 s 的一个子树拥有相同的结构和节点值。</p>
 <p>示例 2:<br>给定的树 s：</p>
 <pre><code>  3
  / \
@@ -437,7 +439,9 @@
   1   2
      /
     0</code></pre><p>给定的树 t：</p>
-<p>   4<br>  / <br> 1   2<br>返回 false。</p>
+<pre><code>   4
+  / \
+ 1   2</code></pre><p>返回 false。</p>
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/subtree-of-another-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/subtree-of-another-tree</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <hr>
 <h4 id="题目解法"><a href="#题目解法" class="headerlink" title="题目解法"></a>题目解法</h4><p>写一个方法isEqual利用递归先判断两棵树是否相等。在判断是否是子树的方法中调用isEqual方法，并且递归其各左右子树完成算法。</p>
