@@ -4,20 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="翻转二叉树, cyyyys">
-    <meta name="description" content="题目要求翻转一棵二叉树。
-示例：
-输入：
-    4
-  /   \
-  2     7
- / \   / \
-1   3 6   9输出：
-   4
- /   \
- 7     2
-/ \   / \
-9   6 3   1来源：力扣（L">
+    <meta name="keywords" content="另一个树的子树, cyyyys">
+    <meta name="description" content="题目要求给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。
+示例 1:给定的树 s:
+  3
+ / \
+4   5">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>翻转二叉树 | cyyyys</title>
+    <title>另一个树的子树 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -272,13 +264,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        翻转二叉树
+                        另一个树的子树
                     </div>
                 </div>
             </div>
@@ -389,8 +381,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/递归、谷歌、homebrew/" target="_blank">
-                                <span class="chip bg-color">递归、谷歌、homebrew</span>
+                            <a href="/tags/递归/" target="_blank">
+                                <span class="chip bg-color">递归</span>
                             </a>
                         
                     </div>
@@ -413,7 +405,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-29
+                    2019-08-31
                 </div>
 
                 
@@ -429,43 +421,44 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>翻转一棵二叉树。</p>
-<p>示例：</p>
-<p>输入：</p>
-<pre><code>    4
-  /   \
-  2     7
- / \   / \
-1   3 6   9</code></pre><p>输出：</p>
-<pre><code>   4
- /   \
- 7     2
-/ \   / \
-9   6 3   1</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/invert-binary-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/invert-binary-tree</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<p>这道题目有一个十分有趣的小故事。mac上家喻户晓的软件homebrew的开发者去参加Google的面试，却不能写出翻转二叉树这道题目，被谷歌拒绝了。原话如下：</p>
-<p>谷歌：我们90％的工程师使用您编写的软件(Homebrew)，但是您却无法在面试时在白板上写出翻转二叉树这道题，这太糟糕了。</p>
-<h4 id="递归法"><a href="#递归法" class="headerlink" title="递归法"></a>递归法</h4><p>树的结构如下：</p>
-<pre><code class="java">public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int val) {
-        this.val = val;
-    }
-}</code></pre>
-<p>翻转一棵空树的结果还是一棵空树（作为迭代出口），利用迭代让其root.left和root.right互换即可完成这道题目。</p>
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。</p>
+<p>示例 1:<br>给定的树 s:</p>
+<pre><code>  3
+ / \
+4   5
+   / \
+  1   2</code></pre><p>给定的树 t：</p>
+<p>   4<br>  / <br> 1   2<br>返回 true，因为 t 与 s 的一个子树拥有相同的结构和节点值。</p>
+<p>示例 2:<br>给定的树 s：</p>
+<pre><code>  3
+ / \
+4   5
+   / \
+  1   2
+     /
+    0</code></pre><p>给定的树 t：</p>
+<p>   4<br>  / <br> 1   2<br>返回 false。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/subtree-of-another-tree" target="_blank" rel="noopener">https://leetcode-cn.com/problems/subtree-of-another-tree</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<hr>
+<h4 id="题目解法"><a href="#题目解法" class="headerlink" title="题目解法"></a>题目解法</h4><p>写一个方法isEqual利用递归先判断两棵树是否相等。在判断是否是子树的方法中调用isEqual方法，并且递归其各左右子树完成算法。</p>
 <pre><code class="java">public class Solution {
-    public TreeNode invertTree(TreeNode root) {
-        if (root == null) return null;
-        TreeNode left = invertTree(root.left);
-        TreeNode right = invertTree(root.right);
-        root.left = right;
-        root.right = left;
-        return root;
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (s == null &amp;&amp; t == null) return true;
+        if (s == null || t == null) return false;
+        if (s.val == t.val)
+            return isEqual(s, t) || isEqual(s.left, t) || isEqual(s.right, t);
+        return isSubtree(s.left, t) || isSubtree(s.right, t);
+    }
+
+    public boolean isEqual(TreeNode l, TreeNode r) {
+        if (l == null &amp;&amp; r == null) return true;
+        if (l == null || r == null) return false;
+        if (l.val == r.val)
+            return isEqual(l.left, r.left) &amp;&amp; isEqual(l.right, r.right);
+        return false;
     }
 }
 </code></pre>
-<p>这道题目并没有难度，只要做出这道题你就能超过世界大牛，问鼎代码之巅。</p>
 
             </div>
             <hr/>
@@ -624,9 +617,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《翻转二叉树》
+                    《另一个树的子树》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/29/翻转二叉树/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/31/另一个树的子树/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -666,30 +659,34 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/30/叶子相似的树/">
+                <a href="/2019/08/31/另一个树的子树/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="叶子相似的树">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="另一个树的子树">
                         
-                        <span class="card-title">叶子相似的树</span>
+                        <span class="card-title">另一个树的子树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目要求请考虑一颗二叉树上所有的叶子，这些叶子的值按从左到右的顺序排列形成一个 叶值序列 。
-![屏幕快照 2019-08-30 上午10.48.39](/Users/congyuyang/Pictures/博客图片/屏幕快照 2019-0
+                            题目要求给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。
+示例 1:给定的树 s:
+  3
+ / \
+4   5
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -702,6 +699,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -720,29 +718,25 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/28/求解二叉树的最大深度和判断是否是平衡二叉树/">
+                <a href="/2019/08/30/叶子相似的树/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="求解二叉树的最大深度和判断是否是平衡二叉树">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="叶子相似的树">
                         
-                        <span class="card-title">求解二叉树的最大深度和判断是否是平衡二叉树</span>
+                        <span class="card-title">叶子相似的树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            求解二叉树的最大深度题目要求给定一个二叉树，找出其最大深度。
-二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
-说明: 叶子节点是指没有子节点的节点。
-示例：给定二叉树 [3,9,20,null,null,15,7]，
-  3
- /
+                            题目要求请考虑一颗二叉树上所有的叶子，这些叶子的值按从左到右的顺序排列形成一个 叶值序列 。
+![屏幕快照 2019-08-30 上午10.48.39](/Users/congyuyang/Pictures/博客图片/屏幕快照 2019-0
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-28
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
                             </span>
                         <span class="publish-author">
                             
@@ -759,8 +753,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/递归/" target="_blank">
+                        <span class="chip bg-color">递归</span>
                     </a>
                     
                 </div>
