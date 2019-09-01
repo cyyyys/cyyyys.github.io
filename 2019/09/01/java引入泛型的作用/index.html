@@ -4,13 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="中序遍历二叉树, cyyyys">
-    <meta name="description" content="算法描述中序遍历（LDR）的遍历顺序是先访问左节点，再访问根节点，最后访问右节点。简单来记就是左根右。
-树的结构如下：
-public class TreeNode{
-    //节点结构
-    int value;
-    TreeNod">
+    <meta name="keywords" content="java引入泛型的作用, cyyyys">
+    <meta name="description" content="###概述
+java泛型是jdk1.5之后的新特性，泛型的本质是参数化乐行，也就是所操作的数据类型被指定为一个参数。这种参数类型可以在类、接口和方法的创建中，分别称为泛型类、泛型接口和泛型方法。我们可以将类型参数看作是使用参数化类型时指定的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +14,7 @@ public class TreeNode{
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>中序遍历二叉树 | cyyyys</title>
+    <title>java引入泛型的作用 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -265,13 +261,13 @@ public class TreeNode{
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        中序遍历二叉树
+                        java引入泛型的作用
                     </div>
                 </div>
             </div>
@@ -382,8 +378,8 @@ public class TreeNode{
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/中序遍历/" target="_blank">
-                                <span class="chip bg-color">中序遍历</span>
+                            <a href="/tags/java、泛型、技术/" target="_blank">
+                                <span class="chip bg-color">java、泛型、技术</span>
                             </a>
                         
                     </div>
@@ -394,8 +390,8 @@ public class TreeNode{
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                算法
+                            <a href="/categories/java/" class="post-category" target="_blank">
+                                java
                             </a>
                         
                     </div>
@@ -422,43 +418,24 @@ public class TreeNode{
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>中序遍历（LDR）的遍历顺序是先访问左节点，再访问根节点，最后访问右节点。简单来记就是左根右。</p>
-<p>树的结构如下：</p>
-<pre><code class="java">public class TreeNode{
-    //节点结构
-    int value;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int value) {
-        this.value = value;
-    }
+                <p>###概述</p>
+<p>java泛型是jdk1.5之后的新特性，泛型的本质是参数化乐行，也就是所操作的数据类型被指定为一个参数。这种参数类型可以在类、接口和方法的创建中，分别称为泛型类、泛型接口和泛型方法。我们可以将类型参数看作是使用参数化类型时指定的类型的一个占位符，就像方法的形式参数是运行时传递的值的占位符一样。</p>
+<p>###举例</p>
+<p>举一个实际的例子</p>
+<pre><code class="java">List list = new ArrayList();
+list.add(&quot;cyyyys&quot;);
+list.add(99);
+for(int i = 0; i &lt; list.size(); i++){
+    String item = (String)list.get(i);
+      System.out.println(item);
 }</code></pre>
-<hr>
-<h3 id="递归法"><a href="#递归法" class="headerlink" title="递归法"></a>递归法</h3><pre><code class="java">public static void midOrderRe(TreeNode biTree) {
-        //中序遍历递归实现
-        if(biTree == null)
-            return;
-        else {
-            midOrderRe(biTree.left);
-            midOrderRe(biTree.right);
-        }
-    }</code></pre>
-<hr>
-<h3 id="非递归法——利用栈实现"><a href="#非递归法——利用栈实现" class="headerlink" title="非递归法——利用栈实现"></a>非递归法——利用栈实现</h3><p>我们可以利用栈来实现非递归的中序遍历。当结点或者栈不为空的时候我们循环执行操作——当结点不为空我们将结点入栈，并将其左子树节点作为新的节点进行操作；若其左节点为空，且栈非空则栈顶元素出栈，将结点的右子树作为新的节点，根据其是否为空进行入栈或出栈操作。（建议画图模拟算法过程）</p>
-<pre><code class="java">public static void midOrder(TreeNode biTree) {
-        //中序遍历非递归实现
-        Stack&lt;TreeNode&gt; stack = new Stack();
-        while(biTree != null || !stack.isEmpty()) {
-            while(biTree != null) {
-                stack.push(biTree);
-                biTree = biTree.left;
-            }
-            if(!stack.isEmpty()) {
-                biTree = stack.pop();
-                biTree = biTree.right;
-            }
-        }
-    }</code></pre>
+<p>由于ArrayList中可以存放任意类型，我们在list中添加了String类型和Integer类型，但是都是以String的形式使用，所以会出现ClassCastException。</p>
+<p>![屏幕快照 2019-09-01 下午4.24.54](/Users/congyuyang/Pictures/博客图片/屏幕快照 2019-09-01 下午4.24.54.png)</p>
+<p>因此我们可以利用泛型做如下改进，这样编译器在编译阶段就会帮我们发现问题。</p>
+<pre><code class="java">List&lt;String&gt; list = new ArrayList();
+...
+//list.add(99); 在编译阶段就会报错</code></pre>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>泛型只在编译阶段有效。在编译过程中，正确验证泛型结果后，会将泛型的相关信息擦除，并且在对象进入和离开方法的便捷处添加类型检查和类型转换的方法。即泛型信息不回进入到运行时阶段。</p>
 
             </div>
             <hr/>
@@ -617,9 +594,9 @@ public class TreeNode{
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《中序遍历二叉树》
+                    《java引入泛型的作用》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/01/中序遍历二叉树/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/01/java引入泛型的作用/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -663,20 +640,20 @@ public class TreeNode{
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/01/java引入泛型的作用/">
+                <a href="/2019/09/01/把二叉树转换为累加树/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="java引入泛型的作用">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="把二叉树转换为累加树">
                         
-                        <span class="card-title">java引入泛型的作用</span>
+                        <span class="card-title">把二叉树转换为累加树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ###概述
-java泛型是jdk1.5之后的新特性，泛型的本质是参数化乐行，也就是所操作的数据类型被指定为一个参数。这种参数类型可以在类、接口和方法的创建中，分别称为泛型类、泛型接口和泛型方法。我们可以将类型参数看作是使用参数化类型时指定的
+                            ###题目要求
+
                         
                     </div>
                     <div class="publish-info">
@@ -687,8 +664,8 @@ java泛型是jdk1.5之后的新特性，泛型的本质是参数化乐行，也�
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category" target="_blank">
-                                    java
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
                                 </a>
                             
                             
@@ -698,8 +675,8 @@ java泛型是jdk1.5之后的新特性，泛型的本质是参数化乐行，也�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java、泛型、技术/" target="_blank">
-                        <span class="chip bg-color">java、泛型、技术</span>
+                    <a href="/tags/递归、深度搜索遍历/" target="_blank">
+                        <span class="chip bg-color">递归、深度搜索遍历</span>
                     </a>
                     
                 </div>
@@ -713,28 +690,29 @@ java泛型是jdk1.5之后的新特性，泛型的本质是参数化乐行，也�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/31/另一个树的子树/">
+                <a href="/2019/09/01/中序遍历二叉树/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="另一个树的子树">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="中序遍历二叉树">
                         
-                        <span class="card-title">另一个树的子树</span>
+                        <span class="card-title">中序遍历二叉树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目要求给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。
-示例 1:给定的树 s:
-  3
- / \
-4   5
+                            算法描述中序遍历（LDR）的遍历顺序是先访问左节点，再访问根节点，最后访问右节点。简单来记就是左根右。
+树的结构如下：
+public class TreeNode{
+    //节点结构
+    int value;
+    TreeNod
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-31
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-01
                             </span>
                         <span class="publish-author">
                             
@@ -751,8 +729,8 @@ java泛型是jdk1.5之后的新特性，泛型的本质是参数化乐行，也�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/递归/" target="_blank">
-                        <span class="chip bg-color">递归</span>
+                    <a href="/tags/中序遍历/" target="_blank">
+                        <span class="chip bg-color">中序遍历</span>
                     </a>
                     
                 </div>
