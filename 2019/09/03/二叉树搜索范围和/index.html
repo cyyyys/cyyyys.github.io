@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="java中Comparable和Comparator的区别, cyyyys">
-    <meta name="description" content="Java中为我们提供了两种比较机制Comparable和Comparator，他们之间有什么区别和联系呢，我们一起来探讨一下。
-Comparable接口
-T代表了被比较对象的类型
-
-Comparable是排序接口。若一个类实现了Compar">
+    <meta name="keywords" content="二叉树搜索范围和, cyyyys">
+    <meta name="description" content="题目要求给定二叉搜索树的根结点 root，返回 L 和 R（含）之间的所有结点的值的和——在L和R之间的数值。
+二叉搜索树保证具有唯一的值。
+ 示例 1：
+输入：root = [10,5,15,3,7,null,18], L = 7, R ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@ Comparable是排序接口。若一个类实现了Compar">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>java中Comparable和Comparator的区别 | cyyyys</title>
+    <title>二叉树搜索范围和 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -264,13 +263,13 @@ Comparable是排序接口。若一个类实现了Compar">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        java中Comparable和Comparator的区别
+                        二叉树搜索范围和
                     </div>
                 </div>
             </div>
@@ -381,8 +380,8 @@ Comparable是排序接口。若一个类实现了Compar">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java基础/" target="_blank">
-                                <span class="chip bg-color">java基础</span>
+                            <a href="/tags/递归、迭代、深度搜索/" target="_blank">
+                                <span class="chip bg-color">递归、迭代、深度搜索</span>
                             </a>
                         
                     </div>
@@ -393,8 +392,8 @@ Comparable是排序接口。若一个类实现了Compar">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/java/" class="post-category" target="_blank">
-                                java
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                算法
                             </a>
                         
                     </div>
@@ -405,7 +404,7 @@ Comparable是排序接口。若一个类实现了Compar">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-02
+                    2019-09-03
                 </div>
 
                 
@@ -421,82 +420,56 @@ Comparable是排序接口。若一个类实现了Compar">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Java中为我们提供了两种比较机制Comparable和Comparator，他们之间有什么区别和联系呢，我们一起来探讨一下。</p>
-<h4 id="Comparable接口"><a href="#Comparable接口" class="headerlink" title="Comparable接口"></a>Comparable<t>接口</t></h4><ul>
-<li><p>T代表了被比较对象的类型</p>
-</li>
-<li><p>Comparable是排序接口。若一个类实现了Comparable接口，就意味着“该类支持排序”。即可通过Collections.sort（或Arrays.sort）进行排序。</p>
-</li>
-<li><p>实现Comparable接口的类的对象可以用作有序映射（TreeMap）中的键或有序集合（TreeSet）中的元素，而不需要指定比较器。</p>
-<pre><code class="java">public interface Comparable&lt;T&gt; {
-    public int compareTo(T o);
-}</code></pre>
-<p>假设我们通过x.compareTo(y)来比较x和y的大小。若返回“负数”则x比y小；返回“0”则x=y；返回“正数”则x大于y。</p>
-<hr>
-<h4 id="Comparator接口"><a href="#Comparator接口" class="headerlink" title="Comparator接口"></a>Comparator<t>接口</t></h4></li>
-<li><p>T代表了被比较对象的类型</p>
-</li>
-<li><p>Comparator是比较器接口，同时一个函数接口，因此可以用作lambda表达式或方法引用的赋值目标。</p>
-</li>
-<li><p>我们通过实现Comparator类来新建一个比较器，然后通过该比较器对类进行排序。</p>
-<pre><code class="java">public interface Comparator&lt;T&gt; {
-    int compare(T o1, T o2);
-    boolean equals(Object obj);
-}</code></pre>
-<p>若一个类要实现Comparator接口一定要实现compareTo(T o1, T o2)函数，但可以不实现equals(Object obj)函数（Object类已经实现了）。int compare(T o1, T o2)比较o1和o2的大小。若返回“负数”则o1比o2小；返回“0”则o1=o2；返回“正数”则o1大于o2。</p>
-<hr>
-<h4 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h4><p>创建一个Person类，实现了Comparable接口。</p>
-<pre><code class="java">public class Person implements Comparable&lt;Person&gt; {
-    int age;
-    String name;
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定二叉搜索树的根结点 root，返回 L 和 R（含）之间的所有结点的值的和——在L和R之间的数值。</p>
+<p>二叉搜索树保证具有唯一的值。</p>
+<p> 示例 1：</p>
+<pre><code>输入：root = [10,5,15,3,7,null,18], L = 7, R = 15
+输出：32</code></pre><p>示例 2：</p>
+<pre><code>输入：root = [10,5,15,3,7,13,18,1,null,6], L = 6, R = 10
+输出：23</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/range-sum-of-bst" target="_blank" rel="noopener">https://leetcode-cn.com/problems/range-sum-of-bst</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h4 id="递归法"><a href="#递归法" class="headerlink" title="递归法"></a>递归法</h4><p>我们对树进行深度优先搜索，对于当前节点 node，如果 node.val 小于等于 L，那么只需要继续搜索它的右子树；如果 node.val 大于等于 R，那么只需要继续搜索它的左子树；如果 node.val 在区间 (L, R) 中，则需要搜索它的所有子树,将其值累加。</p>
+<pre><code class="java">public class Solution_1 {
+    int ans;
+    public int rangeSumBST(TreeNode root, int L,int R) {
+        ans = 0;
+        dfs(root, L, R);
+        return ans;
+    }
 
-    ...省略构造方法、get/set、toString、等方法
-
-    @Override
-    public int compareTo(Person person) {
-        return name.compareTo(person.name);
+    public void dfs(TreeNode node, int L, int R) {
+        if (node != null) {
+            if (L &lt;= node.val &amp;&amp; node.val &lt;= R)
+                ans += node.val;
+            if (L &lt; node.val)
+                dfs(node.left, L, R);
+            if (node.val &lt; R)
+                dfs(node.right, L, R);
+        }
     }
 }</code></pre>
-<p>在main函数中我们创建了list数组，并利用Collections的sort函数对list进行排序。</p>
-<pre><code class="java">public static void main(String[] args) {
-        ArrayList&lt;Person&gt; list = new ArrayList();
-        list.add(new Person(20, &quot;ccc&quot;));
-        list.add(new Person(30, &quot;AAA&quot;));
-        list.add(new Person(10, &quot;bbb&quot;));
-        list.add(new Person(40, &quot;ddd&quot;));
-        System.out.println(list);
-        Collections.sort(list);
-        System.out.println(list);
-    }</code></pre>
-<p>运行结果如下：</p>
-<p>![屏幕快照 2019-09-02 上午11.17.11](/Users/congyuyang/Pictures/博客图片/屏幕快照 2019-09-02 上午11.17.11.png)</p>
 <hr>
+<h4 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h4><pre><code class="java">public class Solution {
+    public int rangeSumBST(TreeNode root, int L, int R) {
+        int ans = 0;
+        Stack&lt;TreeNode&gt; stack = new Stack();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if (node != null) {
+                if (L &lt;= node.val &amp;&amp; node.val &lt;=R) ans += node.val;
+                if (L &lt; node.val) stack.push(node.left);
+                if (node.val &lt; R) stack.push(node.right);
+            }
+        }
+        return ans;
+    }
+}</code></pre>
+<h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ul>
+<li><p>时间复杂度：O(N)，其中N是树中的节点数目。</p>
+</li>
+<li><p>空间复杂度：O(H)，其中H是树的高度。</p>
 </li>
 </ul>
-<p>前面提到过Comparator是一个函数接口，因此可以用作lambda表达式或方法引用的赋值目标。</p>
-<pre><code class="java">public static void main(String[] args) {
-        AscAgeComparator ascAgeComparator = new AscAgeComparator();
-        List&lt;Person&gt; list = new ArrayList();
-        list.add(new Person(20, &quot;ccc&quot;));
-        list.add(new Person(30, &quot;AAA&quot;));
-        list.add(new Person(10, &quot;bbb&quot;));
-        list.add(new Person(40, &quot;ddd&quot;));
-        System.out.println(list);
-              //匿名内部类
-        Collections.sort(list, new Comparator&lt;Person&gt;() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                return o1.getAge() - o2.getAge();
-            }
-        });
-        //Lambda表达式
-        Collections.sort(list, (o1, o2) -&gt; o1.getAge() - o2.getAge());
-        //Comparator.comparingInt
-        Collections.sort(list, Comparator.comparingInt(Person::getAge));
-        System.out.println(list);
-    }</code></pre>
-<p>运行结果如下：</p>
-<p>![屏幕快照 2019-09-02 上午11.18.48](/Users/congyuyang/Pictures/博客图片/屏幕快照 2019-09-02 上午11.18.48.png)</p>
 
             </div>
             <hr/>
@@ -655,9 +628,9 @@ Comparable是排序接口。若一个类实现了Compar">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《java中Comparable和Comparator的区别》
+                    《二叉树搜索范围和》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/02/Java中Comparable和Comparator/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/03/二叉树搜索范围和/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -697,9 +670,63 @@ Comparable是排序接口。若一个类实现了Compar">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019/09/03/二叉树搜索范围和/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="二叉树搜索范围和">
+                        
+                        <span class="card-title">二叉树搜索范围和</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            题目要求给定二叉搜索树的根结点 root，返回 L 和 R（含）之间的所有结点的值的和——在L和R之间的数值。
+二叉搜索树保证具有唯一的值。
+ 示例 1：
+输入：root = [10,5,15,3,7,null,18], L = 7, R 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/递归、迭代、深度搜索/" target="_blank">
+                        <span class="chip bg-color">递归、迭代、深度搜索</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2019/09/02/test/">
                     <div class="card-image">
@@ -720,9 +747,9 @@ Comparable是排序接口。若一个类实现了Compar">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -740,56 +767,6 @@ Comparable是排序接口。若一个类实现了Compar">
                     
                     <a href="/tags/java基础/" target="_blank">
                         <span class="chip bg-color">java基础</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/09/01/把二叉树转换为累加树/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="把二叉树转换为累加树">
-                        
-                        <span class="card-title">把二叉树转换为累加树</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            ###题目要求
-
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-01
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/递归、深度搜索遍历/" target="_blank">
-                        <span class="chip bg-color">递归、深度搜索遍历</span>
                     </a>
                     
                 </div>
