@@ -4,9 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="删除最外层括号, cyyyys">
-    <meta name="description" content="题目要求有效括号字符串为空 (“”)、”(“ + A + “)” 或 A + B，其中 A 和 B 都是有效的括号字符串，+ 代表字符串的连接。例如，””，”()”，”(())()” 和 “(()(()))” 都是有效的括号字符串。
-如果有">
+    <meta name="keywords" content="火柴拼正方形, cyyyys">
+    <meta name="description" content="题目要求还记得童话《卖火柴的小女孩》吗？现在，你知道小女孩有多少根火柴，请找出一种能使用所有火柴拼成一个正方形的方法。不能折断火柴，可以把火柴连接起来，并且每根火柴都要用到。
+输入为小女孩拥有火柴的数目，每根火柴用其长度表示。输出即为是否能">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>删除最外层括号 | cyyyys</title>
+    <title>火柴拼正方形 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        删除最外层括号
+                        火柴拼正方形
                     </div>
                 </div>
             </div>
@@ -378,8 +378,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/栈/" target="_blank">
-                                <span class="chip bg-color">栈</span>
+                            <a href="/tags/回溯法/" target="_blank">
+                                <span class="chip bg-color">回溯法</span>
                             </a>
                         
                     </div>
@@ -402,7 +402,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-04
+                    2019-09-05
                 </div>
 
                 
@@ -418,49 +418,58 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>有效括号字符串为空 (“”)、”(“ + A + “)” 或 A + B，其中 A 和 B 都是有效的括号字符串，+ 代表字符串的连接。例如，””，”()”，”(())()” 和 “(()(()))” 都是有效的括号字符串。</p>
-<p>如果有效字符串 S 非空，且不存在将其拆分为 S = A+B 的方法，我们称其为原语（primitive），其中 A 和 B 都是非空有效括号字符串。</p>
-<p>给出一个非空有效字符串 S，考虑将其进行原语化分解，使得：S = P_1 + P_2 + … + P_k，其中 P_i 是有效括号字符串原语。</p>
-<p>对 S 进行原语化分解，删除分解中每个原语字符串的最外层括号，返回 S 。</p>
-<p>示例 1：</p>
-<pre><code>输入：&quot;(()())(())&quot;
-输出：&quot;()()()&quot;
-解释：
-输入字符串为 &quot;(()())(())&quot;，原语化分解得到 &quot;(()())&quot; + &quot;(())&quot;，
-删除每个部分中的最外层括号后得到 &quot;()()&quot; + &quot;()&quot; = &quot;()()()&quot;。</code></pre><p>示例 2：</p>
-<pre><code>输入：&quot;(()())(())(()(()))&quot;
-输出：&quot;()()()()(())&quot;
-解释：
-输入字符串为 &quot;(()())(())(()(()))&quot;，原语化分解得到 &quot;(()())&quot; + &quot;(())&quot; + &quot;(()(()))&quot;，
-删除每隔部分中的最外层括号后得到 &quot;()()&quot; + &quot;()&quot; + &quot;()(())&quot; = &quot;()()()()(())&quot;。</code></pre><p>示例 3：</p>
-<pre><code>输入：&quot;()()&quot;
-输出：&quot;&quot;
-解释：
-输入字符串为 &quot;()()&quot;，原语化分解得到 &quot;()&quot; + &quot;()&quot;，
-删除每个部分中的最外层括号后得到 &quot;&quot; + &quot;&quot; = &quot;&quot;。</code></pre><p>提示：</p>
-<p>S.length &lt;= 10000<br>S[i] 为 “(“ 或 “)”<br>S 是一个有效括号字符串</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/remove-outermost-parentheses" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-outermost-parentheses</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>思路：遍历字符串，遇到左括号就入栈，遇到右括号就出栈，每次栈空的时候，都说明找到了一个原语，记录下每个原语的起始位置和结束位置，取原字符串在原语的起始位置+1到原语的结束位置的子串便得到原语删除了最外层括号的字符串，拼接，即可解出答案。</p>
-<pre><code class="java">class Solution {
-    public String removeOuterParentheses(String S) {
-        StringBuilder ans = new StringBuilder();
-        Stack&lt;Character&gt; stack = new Stack();
-        int start = 0;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i &lt; S.length(); i++) {
-            if (S.charAt(i) == &#39;(&#39;) {
-                stack.push(&#39;(&#39;);
-            }else {
-              stack.pop();
-              if (stack.isEmpty()) {
-                  sb.append(S.substring(start + 1, i));
-                  start = i + 1;
-              }
-            }
-        }
-        return sb.toString();
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>还记得童话《卖火柴的小女孩》吗？现在，你知道小女孩有多少根火柴，请找出一种能使用所有火柴拼成一个正方形的方法。不能折断火柴，可以把火柴连接起来，并且每根火柴都要用到。</p>
+<p>输入为小女孩拥有火柴的数目，每根火柴用其长度表示。输出即为是否能用所有的火柴拼成正方形。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: [1,1,2,2,2]
+输出: true
+
+解释: 能拼成一个边长为2的正方形，每边两根火柴。</code></pre><p><strong>示例 2:</strong></p>
+<pre><code>输入: [3,3,3,3,4]
+输出: false
+
+解释: 不能用所有火柴拼成一个正方形。</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/matchsticks-to-square" target="_blank" rel="noopener">https://leetcode-cn.com/problems/matchsticks-to-square</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h4 id="回溯算法-贪心策略"><a href="#回溯算法-贪心策略" class="headerlink" title="回溯算法+贪心策略"></a>回溯算法+贪心策略</h4><p>首先我们判断数组元素的和是不是4的倍数，如果不是的话一定返回false。由于火柴不能折断，数组中某一元素大于正方形的边长（数组内元素和/4），那么也将返回false。</p>
+<p>接下来我们使用回溯法来判断能否拼成正方形。这道题里面的回溯指的是把火柴放进不同的边里，这就相当于将火柴放入大小为4的数组某一维度中去。直到全部的火柴处理完为止。在处理过程中，如果摸一个边的大小已经超过了正方形的边长，就进行剪枝操作。</p>
+<p>贪心算法在题目中应用于从大到小处理，速度会快很多。</p>
+<pre><code class="java">public class Solution1 {
+    public boolean makesquare(int[] nums) {
+        int sum = 0;
+        for(int num : nums)
+            sum += num;
+        if(sum == 0 || sum % 4 != 0)
+            return false;
+        int target = sum / 4;
+
+        for(int num : nums)
+            if(num &gt; target)
+                return false;
+        //从大到小的回溯，效率更高
+        Arrays.sort(nums);
+        backtrack(nums.length - 1, nums, target, new int[4]);
+        return ans;
+
     }
-}</code></pre>
+    boolean ans = false;
+    void backtrack(int cur, int[] nums, int target, int[] temp) {
+        if(ans) return;
+        if(cur == -1) {
+            for(int num : temp)
+                if(num != target)
+                    return;
+            ans = true;
+            return;
+        }
+        for(int i = 0; i &lt; temp.length; i++) {
+            int last = temp[i];
+            temp[i] += nums[cur];
+            if(temp[i] &lt;= target)
+                backtrack(cur - 1, nums, target, temp);
+            temp[i] = last;
+        }
+    }
+}
+</code></pre>
 
             </div>
             <hr/>
@@ -619,9 +628,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《删除最外层括号》
+                    《火柴拼正方形》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/04/删除最外层括号/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/05/火柴拼正方形/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -661,9 +670,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/09/05/火柴拼正方形/">
                     <div class="card-image">
@@ -682,9 +692,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -697,6 +707,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -715,27 +726,25 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/03/二叉树搜索范围和/">
+                <a href="/2019/09/04/删除最外层括号/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="二叉树搜索范围和">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="删除最外层括号">
                         
-                        <span class="card-title">二叉树搜索范围和</span>
+                        <span class="card-title">删除最外层括号</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目要求给定二叉搜索树的根结点 root，返回 L 和 R（含）之间的所有结点的值的和——在L和R之间的数值。
-二叉搜索树保证具有唯一的值。
- 示例 1：
-输入：root = [10,5,15,3,7,null,18], L = 7, R 
+                            题目要求有效括号字符串为空 (“”)、”(“ + A + “)” 或 A + B，其中 A 和 B 都是有效的括号字符串，+ 代表字符串的连接。例如，””，”()”，”(())()” 和 “(()(()))” 都是有效的括号字符串。
+如果有
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-03
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-04
                             </span>
                         <span class="publish-author">
                             
@@ -752,8 +761,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/递归、迭代、深度搜索/" target="_blank">
-                        <span class="chip bg-color">递归、迭代、深度搜索</span>
+                    <a href="/tags/栈/" target="_blank">
+                        <span class="chip bg-color">栈</span>
                     </a>
                     
                 </div>
