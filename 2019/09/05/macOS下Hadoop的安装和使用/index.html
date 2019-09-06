@@ -4,9 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="火柴拼正方形, cyyyys">
-    <meta name="description" content="题目要求还记得童话《卖火柴的小女孩》吗？现在，你知道小女孩有多少根火柴，请找出一种能使用所有火柴拼成一个正方形的方法。不能折断火柴，可以把火柴连接起来，并且每根火柴都要用到。
-输入为小女孩拥有火柴的数目，每根火柴用其长度表示。输出即为是否能">
+    <meta name="keywords" content="macOS下Hadoop的安装和使用, cyyyys">
+    <meta name="description" content="macOS下Hadoop的安装和使用 | cyyyys">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>火柴拼正方形 | cyyyys</title>
+    <title>macOS下Hadoop的安装和使用 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +260,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        火柴拼正方形
+                        macOS下Hadoop的安装和使用
                     </div>
                 </div>
             </div>
@@ -378,8 +377,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/回溯法/" target="_blank">
-                                <span class="chip bg-color">回溯法</span>
+                            <a href="/tags/java基础/" target="_blank">
+                                <span class="chip bg-color">java基础</span>
                             </a>
                         
                     </div>
@@ -390,8 +389,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                算法
+                            <a href="/categories/java/" class="post-category" target="_blank">
+                                java
                             </a>
                         
                     </div>
@@ -418,59 +417,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>还记得童话《卖火柴的小女孩》吗？现在，你知道小女孩有多少根火柴，请找出一种能使用所有火柴拼成一个正方形的方法。不能折断火柴，可以把火柴连接起来，并且每根火柴都要用到。</p>
-<p>输入为小女孩拥有火柴的数目，每根火柴用其长度表示。输出即为是否能用所有的火柴拼成正方形。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code>输入: [1,1,2,2,2]
-输出: true
-
-解释: 能拼成一个边长为2的正方形，每边两根火柴。</code></pre><p><strong>示例 2:</strong></p>
-<pre><code>输入: [3,3,3,3,4]
-输出: false
-
-解释: 不能用所有火柴拼成一个正方形。</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/matchsticks-to-square" target="_blank" rel="noopener">https://leetcode-cn.com/problems/matchsticks-to-square</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h4 id="回溯算法-贪心策略"><a href="#回溯算法-贪心策略" class="headerlink" title="回溯算法+贪心策略"></a>回溯算法+贪心策略</h4><p>首先我们判断数组元素的和是不是4的倍数，如果不是的话一定返回false。由于火柴不能折断，数组中某一元素大于正方形的边长（数组内元素和/4），那么也将返回false。</p>
-<p>接下来我们使用回溯法来判断能否拼成正方形。这道题里面的回溯指的是把火柴放进不同的边里，这就相当于将火柴放入大小为4的数组某一维度中去。直到全部的火柴处理完为止。在处理过程中，如果摸一个边的大小已经超过了正方形的边长，就进行剪枝操作。</p>
-<p>贪心算法在题目中应用于从大到小处理，速度会快很多。</p>
-<pre><code class="java">public class Solution1 {
-    public boolean makesquare(int[] nums) {
-        int sum = 0;
-        for(int num : nums)
-            sum += num;
-        if(sum == 0 || sum % 4 != 0)
-            return false;
-        int target = sum / 4;
-
-        for(int num : nums)
-            if(num &gt; target)
-                return false;
-        //从大到小的回溯，效率更高
-        Arrays.sort(nums);
-        backtrack(nums.length - 1, nums, target, new int[4]);
-        return ans;
-
-    }
-    boolean ans = false;
-    void backtrack(int cur, int[] nums, int target, int[] temp) {
-        if(ans) return;
-        if(cur == -1) {
-            for(int num : temp)
-                if(num != target)
-                    return;
-            ans = true;
-            return;
-        }
-        for(int i = 0; i &lt; temp.length; i++) {
-            int last = temp[i];
-            temp[i] += nums[cur];
-            if(temp[i] &lt;= target)
-                backtrack(cur - 1, nums, target, temp);
-            temp[i] = last;
-        }
-    }
-}
-</code></pre>
-
+                
             </div>
             <hr/>
 
@@ -628,9 +575,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《火柴拼正方形》
+                    《macOS下Hadoop的安装和使用》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/05/火柴拼正方形/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/05/macOS下Hadoop的安装和使用/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -674,31 +621,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/05/macOS下Hadoop的安装和使用/">
+                <a href="/2019/09/06/唯一摩尔斯密码词/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="macOS下Hadoop的安装和使用">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="唯一摩尔斯密码词">
                         
-                        <span class="card-title">macOS下Hadoop的安装和使用</span>
+                        <span class="card-title">唯一摩尔斯密码词</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            题目要求国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如: “a” 对应 “.-“, “b” 对应 “-…”, “c” 对应 “-.-.”, 等等。
+为了方便，所有26个英文字母对应摩尔斯密码表如
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-06
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category" target="_blank">
-                                    java
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
                                 </a>
                             
                             
@@ -708,8 +656,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java基础/" target="_blank">
-                        <span class="chip bg-color">java基础</span>
+                    <a href="/tags/递归/" target="_blank">
+                        <span class="chip bg-color">递归</span>
                     </a>
                     
                 </div>
@@ -723,25 +671,25 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/04/删除最外层括号/">
+                <a href="/2019/09/05/火柴拼正方形/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="删除最外层括号">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="火柴拼正方形">
                         
-                        <span class="card-title">删除最外层括号</span>
+                        <span class="card-title">火柴拼正方形</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目要求有效括号字符串为空 (“”)、”(“ + A + “)” 或 A + B，其中 A 和 B 都是有效的括号字符串，+ 代表字符串的连接。例如，””，”()”，”(())()” 和 “(()(()))” 都是有效的括号字符串。
-如果有
+                            题目要求还记得童话《卖火柴的小女孩》吗？现在，你知道小女孩有多少根火柴，请找出一种能使用所有火柴拼成一个正方形的方法。不能折断火柴，可以把火柴连接起来，并且每根火柴都要用到。
+输入为小女孩拥有火柴的数目，每根火柴用其长度表示。输出即为是否能
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
                             </span>
                         <span class="publish-author">
                             
@@ -758,8 +706,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/栈/" target="_blank">
-                        <span class="chip bg-color">栈</span>
+                    <a href="/tags/回溯法/" target="_blank">
+                        <span class="chip bg-color">回溯法</span>
                     </a>
                     
                 </div>
