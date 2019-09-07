@@ -4,9 +4,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="唯一摩尔斯密码词, cyyyys">
-    <meta name="description" content="题目要求国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如: “a” 对应 “.-“, “b” 对应 “-…”, “c” 对应 “-.-.”, 等等。
-为了方便，所有26个英文字母对应摩尔斯密码表如">
+    <meta name="keywords" content="翻转图像, cyyyys">
+    <meta name="description" content="题目要求给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。
+水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。
+反转图片的意思是图片中的 0 全部被 1 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>唯一摩尔斯密码词 | cyyyys</title>
+    <title>翻转图像 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +262,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        唯一摩尔斯密码词
+                        翻转图像
                     </div>
                 </div>
             </div>
@@ -378,8 +379,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/递归/" target="_blank">
-                                <span class="chip bg-color">递归</span>
+                            <a href="/tags/二维数组/" target="_blank">
+                                <span class="chip bg-color">二维数组</span>
                             </a>
                         
                     </div>
@@ -402,7 +403,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-06
+                    2019-09-07
                 </div>
 
                 
@@ -418,49 +419,36 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如: “a” 对应 “.-“, “b” 对应 “-…”, “c” 对应 “-.-.”, 等等。</p>
-<p>为了方便，所有26个英文字母对应摩尔斯密码表如下：</p>
-<pre><code>[&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;]</code></pre><p>给定一个单词列表，每个单词可以写成每个字母对应摩尔斯密码的组合。例如，”cab” 可以写成 “-.-..–…”，(即 “-.-.” + “-…” + “.-“字符串的结合)。我们将这样一个连接过程称作单词翻译。</p>
-<p>返回我们可以获得所有词不同单词翻译的数量。</p>
-<pre><code>例如:
-输入: words = [&quot;gin&quot;, &quot;zen&quot;, &quot;gig&quot;, &quot;msg&quot;]
-输出: 2
-解释: 
-各单词翻译如下:
-&quot;gin&quot; -&gt; &quot;--...-.&quot;
-&quot;zen&quot; -&gt; &quot;--...-.&quot;
-&quot;gig&quot; -&gt; &quot;--...--.&quot;
-&quot;msg&quot; -&gt; &quot;--...--.&quot;
-
-共有 2 种不同翻译, &quot;--...-.&quot; 和 &quot;--...--.&quot;.</code></pre><p>注意:</p>
-<p>单词列表words 的长度不会超过 100。<br>每个单词 words[i]的长度范围为 [1, 12]。<br>每个单词 words[i]只包含小写字母。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/unique-morse-code-words" target="_blank" rel="noopener">https://leetcode-cn.com/problems/unique-morse-code-words</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h4 id="求解思路"><a href="#求解思路" class="headerlink" title="求解思路"></a>求解思路</h4><p>首先利用password数组记录26个摩尔斯密码，利用HashMap记录下key：<code>a~z</code>26个字母，value：相对应的摩尔斯密码。</p>
-<p>接下来利用暴力的解法，外层遍历给定的单词，内层遍历每个单词的字符，从而找到其对应的密码。最后将其添加到set中。</p>
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。</p>
+<p>水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。</p>
+<p>反转图片的意思是图片中的 0 全部被 1 替换， 1 全部被 0 替换。例如，反转 [0, 1, 1] 的结果是 [1, 0, 0]。</p>
+<p>示例 1:</p>
+<pre><code>输入: [[1,1,0],[1,0,1],[0,0,0]]
+输出: [[1,0,0],[0,1,0],[1,1,1]]
+解释: 首先翻转每一行: [[0,1,1],[1,0,1],[0,0,0]]；
+     然后反转图片: [[1,0,0],[0,1,0],[1,1,1]]</code></pre><p>示例 2:</p>
+<pre><code>输入: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+输出: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+解释: 首先翻转每一行: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]]；
+     然后反转图片: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/flipping-an-image" target="_blank" rel="noopener">https://leetcode-cn.com/problems/flipping-an-image</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<hr>
+<h4 id="求解思路"><a href="#求解思路" class="headerlink" title="求解思路"></a>求解思路</h4><p>我们可以不适用额外的空间来完成翻转和反转操作。对于<code>A[i][j]</code>，我们将它和<code>A[i][c-j-1]</code>进行交换（即翻转），其中<code>c</code>是数组<code>A</code>的列数。在交换的同时，我们可以将这两个数进行反转。</p>
 <pre><code class="java">public class Solution {
-    public int uniqueMorseRepresentations(String[] words) {
-        String password[] = {
-                &quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,
-                &quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,
-                &quot;...&quot;, &quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;
-        };
-        HashMap&lt;Character, String&gt; map = new HashMap();
-        for (int i = 0; i &lt; password.length; i++) {
-            map.put((char)(i + 97), password[i]);//key为26个字符，value为摩尔斯密码
-        }
-        Set&lt;String&gt; set = new HashSet();
-        for(int i = 0; i &lt; words.length; i++) {
-            StringBuilder sum = new StringBuilder();
-            for (int j = 0; j &lt; words[i].length(); j++) {
-                if(map.containsKey(words[i].charAt(j))) {//通过key找到对应的密码
-                    sum.append(map.get(words[i].charAt(j)));
+        public int[][] flipAndInvertImage(int[][] A) {
+            int c = A[0].length;
+            for (int[] row : A)
+                for (int i = 0; i &lt; (c + 1) / 2; i++) {
+                    int tmp = row[i] ^ 1;
+                    row[i] = row[c - 1 - i] ^ 1;
+                    row[c - 1 - i] = tmp;
                 }
-            }
-            set.add(sum.toString());
+            return A;
         }
-        return set.size();
-    }
 }</code></pre>
+<h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ul>
+<li>时间复杂度：O(M * N)，其中M和N分别为数组<code>A</code>的行数和列数。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
 
             </div>
             <hr/>
@@ -619,9 +607,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《唯一摩尔斯密码词》
+                    《翻转图像》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/06/唯一摩尔斯密码词/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/07/翻转图像/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -661,9 +649,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/09/07/翻转图像/">
                     <div class="card-image">
@@ -683,9 +672,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -698,6 +687,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -716,31 +706,32 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/05/macOS下Hadoop的安装和使用/">
+                <a href="/2019/09/06/唯一摩尔斯密码词/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="macOS下Hadoop的安装和使用">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="唯一摩尔斯密码词">
                         
-                        <span class="card-title">macOS下Hadoop的安装和使用</span>
+                        <span class="card-title">唯一摩尔斯密码词</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            题目要求国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如: “a” 对应 “.-“, “b” 对应 “-…”, “c” 对应 “-.-.”, 等等。
+为了方便，所有26个英文字母对应摩尔斯密码表如
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category" target="_blank">
-                                    java
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
                                 </a>
                             
                             
@@ -750,8 +741,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java基础/" target="_blank">
-                        <span class="chip bg-color">java基础</span>
+                    <a href="/tags/递归/" target="_blank">
+                        <span class="chip bg-color">递归</span>
                     </a>
                     
                 </div>
