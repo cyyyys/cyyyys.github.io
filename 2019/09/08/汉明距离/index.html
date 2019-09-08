@@ -4,10 +4,17 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="翻转图像, cyyyys">
-    <meta name="description" content="题目要求给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。
-水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。
-反转图片的意思是图片中的 0 全部被 1 ">
+    <meta name="keywords" content="汉明距离, cyyyys">
+    <meta name="description" content="题目要求两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。
+给出两个整数 x 和 y，计算它们之间的汉明距离。
+注意：0 ≤ x, y &amp;lt; 231.
+示例:
+输入: x = 1, y = 4
+
+输出: 2
+
+解释:
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +22,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>翻转图像 | cyyyys</title>
+    <title>汉明距离 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -262,13 +269,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        翻转图像
+                        汉明距离
                     </div>
                 </div>
             </div>
@@ -379,8 +386,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/二维数组/" target="_blank">
-                                <span class="chip bg-color">二维数组</span>
+                            <a href="/tags/回溯法/" target="_blank">
+                                <span class="chip bg-color">回溯法</span>
                             </a>
                         
                     </div>
@@ -403,7 +410,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-07
+                    2019-09-08
                 </div>
 
                 
@@ -419,35 +426,40 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。</p>
-<p>水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。</p>
-<p>反转图片的意思是图片中的 0 全部被 1 替换， 1 全部被 0 替换。例如，反转 [0, 1, 1] 的结果是 [1, 0, 0]。</p>
-<p>示例 1:</p>
-<pre><code>输入: [[1,1,0],[1,0,1],[0,0,0]]
-输出: [[1,0,0],[0,1,0],[1,1,1]]
-解释: 首先翻转每一行: [[0,1,1],[1,0,1],[0,0,0]]；
-     然后反转图片: [[1,0,0],[0,1,0],[1,1,1]]</code></pre><p>示例 2:</p>
-<pre><code>输入: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
-输出: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
-解释: 首先翻转每一行: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]]；
-     然后反转图片: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/flipping-an-image" target="_blank" rel="noopener">https://leetcode-cn.com/problems/flipping-an-image</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。</p>
+<p>给出两个整数 x 和 y，计算它们之间的汉明距离。</p>
+<p>注意：<br>0 ≤ x, y &lt; 231.</p>
+<p>示例:</p>
+<pre><code>输入: x = 1, y = 4
+
+输出: 2
+
+解释:
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+
+上面的箭头指出了对应二进制位不同的位置。</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/hamming-distance" target="_blank" rel="noopener">https://leetcode-cn.com/problems/hamming-distance</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <hr>
-<h4 id="求解思路"><a href="#求解思路" class="headerlink" title="求解思路"></a>求解思路</h4><p>我们可以不适用额外的空间来完成翻转和反转操作。对于<code>A[i][j]</code>，我们将它和<code>A[i][c-j-1]</code>进行交换（即翻转），其中<code>c</code>是数组<code>A</code>的列数。在交换的同时，我们可以将这两个数进行反转。</p>
-<pre><code class="java">public class Solution {
-        public int[][] flipAndInvertImage(int[][] A) {
-            int c = A[0].length;
-            for (int[] row : A)
-                for (int i = 0; i &lt; (c + 1) / 2; i++) {
-                    int tmp = row[i] ^ 1;
-                    row[i] = row[c - 1 - i] ^ 1;
-                    row[c - 1 - i] = tmp;
-                }
-            return A;
+<p>####求解方法</p>
+<ul>
+<li><p>通过^方法得出结果上面1的个数即为所求。</p>
+</li>
+<li><p>通过&amp;、count++利用count变量表示不同的个数，并返回。</p>
+<pre><code class="java">public class Solution1 {
+    public int hammingDistance(int x, int y) {
+        int count = 0;
+        int ans = x ^ y;
+        while (ans != 0) {
+            count++;
+            ans = ans &amp; (ans - 1);
         }
+
+        return count;
+    }
 }</code></pre>
-<h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ul>
-<li>时间复杂度：O(M * N)，其中M和N分别为数组<code>A</code>的行数和列数。</li>
-<li>空间复杂度：O(1)。</li>
+<p>时间空间复杂度均为O(1)。</p>
+</li>
 </ul>
 
             </div>
@@ -607,9 +619,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《翻转图像》
+                    《汉明距离》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/07/翻转图像/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/08/汉明距离/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -649,9 +661,69 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019/09/08/汉明距离/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="汉明距离">
+                        
+                        <span class="card-title">汉明距离</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            题目要求两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。
+给出两个整数 x 和 y，计算它们之间的汉明距离。
+注意：0 ≤ x, y &lt; 231.
+示例:
+输入: x = 1, y = 4
+
+输出: 2
+
+解释:
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/算法/" class="post-category" target="_blank">
+                                    算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/回溯法/" target="_blank">
+                        <span class="chip bg-color">回溯法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2019/09/07/Hadoop的安装和使用/">
                     <div class="card-image">
@@ -673,9 +745,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -683,56 +755,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/09/06/唯一摩尔斯密码词/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="唯一摩尔斯密码词">
-                        
-                        <span class="card-title">唯一摩尔斯密码词</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            题目要求国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如: “a” 对应 “.-“, “b” 对应 “-…”, “c” 对应 “-.-.”, 等等。
-为了方便，所有26个英文字母对应摩尔斯密码表如
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/递归/" target="_blank">
-                        <span class="chip bg-color">递归</span>
-                    </a>
-                    
                 </div>
                 
             </div>
