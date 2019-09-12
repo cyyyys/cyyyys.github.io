@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="自除数, cyyyys">
-    <meta name="description" content="####题目要求
-自除数 是指可以被它包含的每一位数除尽的数。
-例如，128 是一个自除数，因为 128 % 1 == 0，128 % 2 == 0，128 % 8 == 0。
-还有，自除数不允许包含 0 。
-给定上边界和下边界数字，输出一">
+    <meta name="keywords" content="两树之和, cyyyys">
+    <meta name="description" content="题目要求给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+示例:
+给定 nums =">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>自除数 | cyyyys</title>
+    <title>两树之和 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -264,13 +263,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        自除数
+                        两树之和
                     </div>
                 </div>
             </div>
@@ -381,8 +380,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/列表/" target="_blank">
-                                <span class="chip bg-color">列表</span>
+                            <a href="/tags/暴力法、哈希表/" target="_blank">
+                                <span class="chip bg-color">暴力法、哈希表</span>
                             </a>
                         
                     </div>
@@ -405,7 +404,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-10
+                    2019-09-12
                 </div>
 
                 
@@ -421,65 +420,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>####题目要求</p>
-<p>自除数 是指可以被它包含的每一位数除尽的数。</p>
-<p>例如，128 是一个自除数，因为 128 % 1 == 0，128 % 2 == 0，128 % 8 == 0。</p>
-<p>还有，自除数不允许包含 0 。</p>
-<p>给定上边界和下边界数字，输出一个列表，列表的元素是边界（含边界）内所有的自除数。</p>
-<p>示例 1：</p>
-<pre><code>输入： 
-上边界left = 1, 下边界right = 22
-输出： [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/self-dividing-numbers" target="_blank" rel="noopener">https://leetcode-cn.com/problems/self-dividing-numbers</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<hr>
-<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>下面提供两种解法，一种是通过将数字转化成字符数字来计算，通过求模得到除数，如果除数为0或者模运算的结果不为0，则返回false；另一种通过对参数除以10，只要大于零就可以继续做操作，代码如下：</p>
-<pre><code class="java">public class Solution {
-    public static List&lt;Integer&gt; selfDividingNumbers(int left, int right) {
-        List&lt;Integer&gt; res = new ArrayList();
-        for(int i = left; i &lt;= right; i++) {
-            //数字转化成字符数字，即单个位数字
-            char[] chars = String.valueOf(i).toCharArray();
-            boolean sign = true;
-            for(char e : chars) {
-                //字符数字转化成数字
-                int temp = (e - 48);
-                if(temp == 0 || i % (temp) != 0) {
-                    sign = false;
-                    //已经不是自除数，直接跳出该层循环
-                    break;
-                }
-            }
-            if(sign) {
-                res.add(i);
-            }
+                <h4 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h4><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+<p><strong>示例:</strong></p>
+<pre><code>给定 nums = [2, 7, 11, 15], target = 9
 
-        }
-        return res;
-    }</code></pre>
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]</code></pre><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/two-sum" target="_blank" rel="noopener">https://leetcode-cn.com/problems/two-sum</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <hr>
-<pre><code class="java">public class Solution {
-    public List&lt;Integer&gt; selfDividingNumbers(int left, int right) {
-        List&lt;Integer&gt; list = new ArrayList();
-        for(int i=left; i&lt;=right; i++){
-            if(isDividingNumber(i)){
-                list.add(i);
+<h4 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h4><p>暴力法的思想很简单，遍历每个元素x，并查找是否存在一个值与target-x相等的目标元素。</p>
+<pre><code class="java">public static int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i &lt; nums.length; i++) {
+            for (int j = i + 1; j &lt; nums.length; j++) {
+                if (nums[j] == target - nums[i])
+                    return new int[] {i, j};
             }
         }
-        return list;
-    }
-    private boolean isDividingNumber(int num){
-        int temp = 0;
-        int n = num;
-        while(num &gt; 0){
-            temp = num % 10;
-            if(temp == 0||n % temp != 0){
-                return false;
+        throw new IllegalArgumentException(&quot;No two sum solution&quot;);
+    }</code></pre>
+<h5 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><ul>
+<li>时间复杂度O(n²)。</li>
+<li>空间复杂度O(1)。</li>
+</ul>
+<hr>
+<h4 id="哈希表法"><a href="#哈希表法" class="headerlink" title="哈希表法"></a>哈希表法</h4><p>为了对时间复杂度进行优化，我们可以使用哈希表，检查数组中是否存在目标元素。如果存在，我们需要找出它的索引即可。</p>
+<p>通过以空间换取速度的方式，我们将查找时间从O(n)降到O(1)。哈希表正式为此目的而构建的，它支持以近似恒定的时间进行快速查找。我们用“近似”这个词是因为一旦出现冲突，查找用时可能会退化到O(n)。但只要仔细挑选哈希函数，在哈希表中进行查找的用时应当被摊销为O(1)。</p>
+<p>我们通过迭代将元素插入到表中，同时检查表中是否已经存在当前元素所对应的目标元素。如果存在，那么我们就找到了对应解，并将其返回。</p>
+<pre><code class="java">public static int[] twoSum(int[] nums, int target) {
+        Map&lt;Integer, Integer&gt; map = new HashMap();
+        for (int i = 0; i &lt; nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
             }
-            num = num / 10;
+            map.put(nums[i], i);
         }
-        return true;
-    }
-}
-</code></pre>
+        throw new IllegalArgumentException(&quot;No two sum solution&quot;);
+    }</code></pre>
+<h5 id="复杂度分析：-1"><a href="#复杂度分析：-1" class="headerlink" title="复杂度分析："></a>复杂度分析：</h5><ul>
+<li>时间复杂度：O(n)，我们只遍历了包含n个元素的列表一次，在表中进行的每次查找只花费O(1)的时间。</li>
+<li>空间复杂度O(n)，所需的额外空间取决于哈希表中存储的元素数量，该表最多需要存储n个元素。</li>
+</ul>
 
             </div>
             <hr/>
@@ -638,9 +619,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《自除数》
+                    《两树之和》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/10/自除数/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/12/两数之和/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -680,9 +661,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/09/12/两数之和/">
                     <div class="card-image">
@@ -703,9 +685,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -718,6 +700,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -736,26 +719,28 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/09/增减字符串匹配/">
+                <a href="/2019/09/10/自除数/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="增减字符串匹配">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="自除数">
                         
-                        <span class="card-title">增减字符串匹配</span>
+                        <span class="card-title">自除数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目要求给定只含 “I”（增大）或 “D”（减小）的字符串 S ，令 N = S.length。
-返回 [0, 1, …, N] 的任意排列 A 使得对于所有 i = 0, …, N-1，都有：
-如果 S[i] == “I”，那么 A[i]
+                            ####题目要求
+自除数 是指可以被它包含的每一位数除尽的数。
+例如，128 是一个自除数，因为 128 % 1 == 0，128 % 2 == 0，128 % 8 == 0。
+还有，自除数不允许包含 0 。
+给定上边界和下边界数字，输出一
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-10
                             </span>
                         <span class="publish-author">
                             
@@ -768,6 +753,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/列表/" target="_blank">
+                        <span class="chip bg-color">列表</span>
+                    </a>
+                    
                 </div>
                 
             </div>
