@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="java中Comparable和Comparator的区别, cyyyys">
-    <meta name="description" content="Java中为我们提供了两种比较机制Comparable和Comparator，他们之间有什么区别和联系呢，我们一起来探讨一下。
-Comparable接口
-T代表了被比较对象的类型
+    <meta name="keywords" content="macOS下Hadoop的安装和使用（一）, cyyyys">
+    <meta name="description" content="安装环境本机系统：macOS
+虚拟机：Ubuntu
+在安装Hadoop之前需要进行一些准备工作，包括创建hadoop用户、更新APT、安装SSH和安装Java环境等。
 
-Comparable是排序接口。若一个类实现了Compar">
+安装SSHSSH是Secure Shell的缩写，是建立在应用层和传输">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@ Comparable是排序接口。若一个类实现了Compar">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>java中Comparable和Comparator的区别 | cyyyys</title>
+    <title>macOS下Hadoop的安装和使用（一） | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -264,13 +264,13 @@ Comparable是排序接口。若一个类实现了Compar">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        java中Comparable和Comparator的区别
+                        macOS下Hadoop的安装和使用（一）
                     </div>
                 </div>
             </div>
@@ -405,7 +405,7 @@ Comparable是排序接口。若一个类实现了Compar">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-02
+                    2019-09-07
                 </div>
 
                 
@@ -421,82 +421,27 @@ Comparable是排序接口。若一个类实现了Compar">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Java中为我们提供了两种比较机制Comparable和Comparator，他们之间有什么区别和联系呢，我们一起来探讨一下。</p>
-<h4 id="Comparable接口"><a href="#Comparable接口" class="headerlink" title="Comparable接口"></a>Comparable<t>接口</t></h4><ul>
-<li><p>T代表了被比较对象的类型</p>
-</li>
-<li><p>Comparable是排序接口。若一个类实现了Comparable接口，就意味着“该类支持排序”。即可通过Collections.sort（或Arrays.sort）进行排序。</p>
-</li>
-<li><p>实现Comparable接口的类的对象可以用作有序映射（TreeMap）中的键或有序集合（TreeSet）中的元素，而不需要指定比较器。</p>
-<pre><code class="java">public interface Comparable&lt;T&gt; {
-    public int compareTo(T o);
-}</code></pre>
-<p>假设我们通过x.compareTo(y)来比较x和y的大小。若返回“负数”则x比y小；返回“0”则x=y；返回“正数”则x大于y。</p>
+                <h4 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h4><p>本机系统：macOS</p>
+<p>虚拟机：Ubuntu</p>
+<p>在安装Hadoop之前需要进行一些准备工作，包括创建hadoop用户、更新APT、安装SSH和安装Java环境等。</p>
 <hr>
-<h4 id="Comparator接口"><a href="#Comparator接口" class="headerlink" title="Comparator接口"></a>Comparator<t>接口</t></h4></li>
-<li><p>T代表了被比较对象的类型</p>
-</li>
-<li><p>Comparator是比较器接口，同时一个函数接口，因此可以用作lambda表达式或方法引用的赋值目标。</p>
-</li>
-<li><p>我们通过实现Comparator类来新建一个比较器，然后通过该比较器对类进行排序。</p>
-<pre><code class="java">public interface Comparator&lt;T&gt; {
-    int compare(T o1, T o2);
-    boolean equals(Object obj);
-}</code></pre>
-<p>若一个类要实现Comparator接口一定要实现compareTo(T o1, T o2)函数，但可以不实现equals(Object obj)函数（Object类已经实现了）。int compare(T o1, T o2)比较o1和o2的大小。若返回“负数”则o1比o2小；返回“0”则o1=o2；返回“正数”则o1大于o2。</p>
-<hr>
-<h4 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h4><p>创建一个Person类，实现了Comparable接口。</p>
-<pre><code class="java">public class Person implements Comparable&lt;Person&gt; {
-    int age;
-    String name;
-
-    ...省略构造方法、get/set、toString、等方法
-
-    @Override
-    public int compareTo(Person person) {
-        return name.compareTo(person.name);
-    }
-}</code></pre>
-<p>在main函数中我们创建了list数组，并利用Collections的sort函数对list进行排序。</p>
-<pre><code class="java">public static void main(String[] args) {
-        ArrayList&lt;Person&gt; list = new ArrayList();
-        list.add(new Person(20, &quot;ccc&quot;));
-        list.add(new Person(30, &quot;AAA&quot;));
-        list.add(new Person(10, &quot;bbb&quot;));
-        list.add(new Person(40, &quot;ddd&quot;));
-        System.out.println(list);
-        Collections.sort(list);
-        System.out.println(list);
-    }</code></pre>
-<p>运行结果如下：</p>
-<p>![屏幕快照 2019-09-02 上午11.17.11](/Users/congyuyang/Pictures/博客图片/屏幕快照 2019-09-02 上午11.17.11.png)</p>
-<hr>
-</li>
-</ul>
-<p>前面提到过Comparator是一个函数接口，因此可以用作lambda表达式或方法引用的赋值目标。</p>
-<pre><code class="java">public static void main(String[] args) {
-        AscAgeComparator ascAgeComparator = new AscAgeComparator();
-        List&lt;Person&gt; list = new ArrayList();
-        list.add(new Person(20, &quot;ccc&quot;));
-        list.add(new Person(30, &quot;AAA&quot;));
-        list.add(new Person(10, &quot;bbb&quot;));
-        list.add(new Person(40, &quot;ddd&quot;));
-        System.out.println(list);
-              //匿名内部类
-        Collections.sort(list, new Comparator&lt;Person&gt;() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                return o1.getAge() - o2.getAge();
-            }
-        });
-        //Lambda表达式
-        Collections.sort(list, (o1, o2) -&gt; o1.getAge() - o2.getAge());
-        //Comparator.comparingInt
-        Collections.sort(list, Comparator.comparingInt(Person::getAge));
-        System.out.println(list);
-    }</code></pre>
-<p>运行结果如下：</p>
-<p>![屏幕快照 2019-09-02 上午11.18.48](/Users/congyuyang/Pictures/博客图片/屏幕快照 2019-09-02 上午11.18.48.png)</p>
+<h4 id="安装SSH"><a href="#安装SSH" class="headerlink" title="安装SSH"></a>安装SSH</h4><p>SSH是Secure Shell的缩写，是建立在应用层和传输层基础上的安全协议。SSH是目前比较可靠、专为远程登录会话和其他网络服务提供安全性的协议。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。SSH是由客户端和服务端的软件组成，服务端是一个守护进程，它在后台运行并相应来自客户端的连接请求，客户端包含ssh程序以及像scp（远程赋值），slogin（远程登录），sftp（安全文件传输）等其他应用程序。</p>
+<p>为什么在安装Hadoop之前要配置SSH呢？因为，Hadoop名称节点（NameNode）需要启动集群中所有机器的Hadoop守护进程，这个过程需要通过SSH登录来实现。Hadoop并没有提供SSH输入密码登录的形式，因此，为了能够顺利登录集群中的每台机器，需要将所有机器配置为“名称节点可以无密码登录它们”。</p>
+<p>Ubuntu默认已安装了SSH客户端，因此，这里还需要安装SSH服务端，在Linux的终端中执行以下命令：</p>
+<p><code>$sudo apt-get install openssh-server</code></p>
+<p>安装后，可以使用如下命令登录本机：</p>
+<p><code>ssh localhost</code></p>
+<p>由于这样的登录需要每次输入密码，我们可以配置SSH无密码登录。</p>
+<p>首先输入命令exit退出刚才的SSH，就回到了原先的终端窗口；然后利用ssh-keygen生成密码，并将密钥加入到授权中，命令如下：</p>
+<pre><code>$cd ~/.ssh/              #若没有该目录，请先执行一次 ssh localhost
+$ssh-keygen -t rsa       #会有提示，按Enter键即可
+$cat ./id_rsa.pub&gt;&gt;./authorized_keys       #加入授权</code></pre><p>此时，再执行ssh localhost命令，无须输入密码就可以直接登录了。</p>
+<h4 id="安装Java环境"><a href="#安装Java环境" class="headerlink" title="安装Java环境"></a>安装Java环境</h4><p>Hadoop是基于Java语言开发的，本书的Hadoop应用程序也是采用Java语言编写的，因此需要安装Java环境。</p>
+<p>直接通过命令安装OpenJDK 8：</p>
+<p><code>$sudo apt-get install openjdk-8-jre openjdk-8-jdk</code></p>
+<p>安装好OpenJDK后，需要找到相应的安装路径，这个路径是用于配置JAVA_HOME环境变量的，请执行如下命令：</p>
+<p><code>dpkg -L openjdk-8-jdk | grep &#39;/bin/javac&#39;</code></p>
+<p>该命令会输出一个路径，出去路径末尾的/bin/javac，剩下的就是正确的路径了。</p>
 
             </div>
             <hr/>
@@ -655,9 +600,9 @@ Comparable是排序接口。若一个类实现了Compar">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《java中Comparable和Comparator的区别》
+                    《macOS下Hadoop的安装和使用（一）》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/02/Java中Comparable和Comparator/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/07/Hadoop的安装和使用（一）/" property="cc:attributionName"
                rel="cc:attributionURL">
                 cyyyys
             </a> 采用
@@ -701,27 +646,33 @@ Comparable是排序接口。若一个类实现了Compar">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/03/二叉树搜索范围和/">
+                <a href="/2019/09/08/汉明距离/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="二叉树搜索范围和">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="汉明距离">
                         
-                        <span class="card-title">二叉树搜索范围和</span>
+                        <span class="card-title">汉明距离</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目要求给定二叉搜索树的根结点 root，返回 L 和 R（含）之间的所有结点的值的和——在L和R之间的数值。
-二叉搜索树保证具有唯一的值。
- 示例 1：
-输入：root = [10,5,15,3,7,null,18], L = 7, R 
+                            题目要求两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。
+给出两个整数 x 和 y，计算它们之间的汉明距离。
+注意：0 ≤ x, y &lt; 231.
+示例:
+输入: x = 1, y = 4
+
+输出: 2
+
+解释:
+
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-03
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-08
                         </span>
                         <span class="publish-author">
                             
@@ -738,8 +689,8 @@ Comparable是排序接口。若一个类实现了Compar">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/递归、迭代、深度搜索/" target="_blank">
-                        <span class="chip bg-color">递归、迭代、深度搜索</span>
+                    <a href="/tags/回溯法/" target="_blank">
+                        <span class="chip bg-color">回溯法</span>
                     </a>
                     
                 </div>
@@ -753,25 +704,26 @@ Comparable是排序接口。若一个类实现了Compar">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/01/把二叉树转换为累加树/">
+                <a href="/2019/09/07/翻转图像/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="把二叉树转换为累加树">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="翻转图像">
                         
-                        <span class="card-title">把二叉树转换为累加树</span>
+                        <span class="card-title">翻转图像</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ###题目要求
-
+                            题目要求给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。
+水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。
+反转图片的意思是图片中的 0 全部被 1 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-01
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-07
                             </span>
                         <span class="publish-author">
                             
@@ -788,8 +740,8 @@ Comparable是排序接口。若一个类实现了Compar">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/递归、深度搜索遍历/" target="_blank">
-                        <span class="chip bg-color">递归、深度搜索遍历</span>
+                    <a href="/tags/二维数组/" target="_blank">
+                        <span class="chip bg-color">二维数组</span>
                     </a>
                     
                 </div>
