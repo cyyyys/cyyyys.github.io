@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="macOS下Hadoop的安装和使用（一）, cyyyys">
+    <meta name="keywords" content="macOS下Hadoop的安装和使用, cyyyys">
     <meta name="description" content="安装环境本机系统：macOS
 虚拟机：Ubuntu
 在安装Hadoop之前需要进行一些准备工作，包括创建hadoop用户、更新APT、安装SSH和安装Java环境等。
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>macOS下Hadoop的安装和使用（一） | cyyyys</title>
+    <title>macOS下Hadoop的安装和使用 | cyyyys</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -264,13 +264,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        macOS下Hadoop的安装和使用（一）
+                        macOS下Hadoop的安装和使用
                     </div>
                 </div>
             </div>
@@ -431,18 +431,13 @@
 <p><code>$sudo apt-get install openssh-server</code></p>
 <p>安装后，可以使用如下命令登录本机：</p>
 <p><code>ssh localhost</code></p>
-<p>由于这样的登录需要每次输入密码，我们可以配置SSH无密码登录。</p>
-<p>首先输入命令exit退出刚才的SSH，就回到了原先的终端窗口；然后利用ssh-keygen生成密码，并将密钥加入到授权中，命令如下：</p>
-<pre><code>$cd ~/.ssh/              #若没有该目录，请先执行一次 ssh localhost
-$ssh-keygen -t rsa       #会有提示，按Enter键即可
-$cat ./id_rsa.pub&gt;&gt;./authorized_keys       #加入授权</code></pre><p>此时，再执行ssh localhost命令，无须输入密码就可以直接登录了。</p>
-<h4 id="安装Java环境"><a href="#安装Java环境" class="headerlink" title="安装Java环境"></a>安装Java环境</h4><p>Hadoop是基于Java语言开发的，本书的Hadoop应用程序也是采用Java语言编写的，因此需要安装Java环境。</p>
-<p>直接通过命令安装OpenJDK 8：</p>
-<p><code>$sudo apt-get install openjdk-8-jre openjdk-8-jdk</code></p>
-<p>安装好OpenJDK后，需要找到相应的安装路径，这个路径是用于配置JAVA_HOME环境变量的，请执行如下命令：</p>
-<p><code>dpkg -L openjdk-8-jdk | grep &#39;/bin/javac&#39;</code></p>
-<p>该命令会输出一个路径，出去路径末尾的/bin/javac，剩下的就是正确的路径了。</p>
-
+<p>由于这样登录需要每次输入密码，所以需要配置成SSH无密码登录会比较方便。</p>
+<p>首先输入命令exit退出刚才的SSH，回到了原先的终端窗口；然后利用ssh-keygen生成密钥，并将密钥加入到授权中，命令如下：</p>
+<pre><code>$cd ~/.ssh/            #若没有该目录，请先执行一次ssh localhost
+$ssh-keygen -t rsa     #会有提示，按Enter键即可
+$cat ./id_rsa.pub&gt;&gt;./authorized_keys      #加入授权</code></pre><p>此时，在执行ssh localhost命令，无序输入密码就可以直接登录了。</p>
+<hr>
+<h4 id="安装Java环境"><a href="#安装Java环境" class="headerlink" title="安装Java环境"></a>安装Java环境</h4>
             </div>
             <hr/>
 
@@ -600,7 +595,7 @@ $cat ./id_rsa.pub&gt;&gt;./authorized_keys       #加入授权</code></pre><p>�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《macOS下Hadoop的安装和使用（一）》
+                    《macOS下Hadoop的安装和使用》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/07/Hadoop的安装和使用（一）/" property="cc:attributionName"
                rel="cc:attributionURL">
